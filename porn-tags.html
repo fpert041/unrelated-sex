@@ -1,0 +1,94 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Freudian Slip (Working Title)</title>
+  <meta name="description" content="Not what you're thinking.">
+  <meta name="author" content="">
+<!-- All CSS goes between the style tags below: -->
+  <style type = "text/css">
+
+
+	body {
+	   font-size: 1.1em;
+	   font-weight: 300;
+	   font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+	   color: #404040;
+	   background-color: #000;
+	}
+	p {
+		margin: 0 0 10px 0;
+	}
+	a {
+	  color: #4166B5;
+	  text-decoration: none;
+	}
+	#container {
+	  width: 600px;
+	  margin: 150px auto 100px auto;
+	  border-radius: 5px;
+	  background-color: #BBC1CA;
+	}
+	#heading {
+	  background-color: #FFFFFF;
+	  color: #56606D;
+	  text-align: center;
+	  font-size: 1.3em;
+	  font-weight: bold;
+	  border-radius: 5px 5px 0px 0px;
+	  padding-top: 4px;
+	  padding-bottom: 4px;
+	}
+	#interface {
+	  padding: 10px 15px;
+	}
+	#url-input {
+		width: 560px;
+	}
+	#process-image-button {
+		margin: 10px 0;
+		font-size: 0.8em;
+	}
+	#output-textarea {
+		margin: 10px 0;
+		font-size: 1.2em;
+	}
+	#source-image {
+		width: 560px;
+	}
+  </style>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="keys.js"></script>
+<script type = "text/javascript" src="FirstMatchingPrototype.js"></script>   
+</head>
+
+<body>
+<!-- All HTML markup goes between the body tags below: -->
+
+<div id = "container">
+ <!-- For each tag/image, paste a description and checkbox element surounded by div tags -->
+<div id="heading">Freudian Slip (Working Title)</div>
+	<div id="interface"><p>Please enter an image URL:</p>
+	 <input type="text" name="url" id="url-input">
+	 <button id="process-image-button">Process my image!</button>
+	 <textarea id ="output-textarea"rows="2" cols="55"></textarea> 
+	 <img id="source-image">
+	 </div>
+</div>
+
+<!-- All javascript goes between the script tags below: -->
+	<script type="text/javascript">
+		run()
+document.getElementById("process-image-button").onclick = function() {
+	var imageURL = document.getElementById("url-input").value;
+	document.getElementById("source-image").src = imageURL + "?random=" + new Date().getTime();
+	var tags = run(imageURL);
+	//document.getElementById("output-textarea").value=tags;
+}
+		
+  </script>
+
+
+</body>
