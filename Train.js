@@ -37,10 +37,15 @@ for (var i = 0; i < urls.length; i++) {
 
 console.log(urlObjects[0].concepts[0].id);
 
+
+//************************************
+//	DEBUGGING CALLS TO WRAPPERS
+
 //if(newModel(modelid));
 //if(train(modelid));
-//predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
+predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
 
+//************************************
 	
 /**************************************
 	*** Interface wrapper functions ***
@@ -52,11 +57,11 @@ console.log(urlObjects[0].concepts[0].id);
 
 
 function newModel(modelID){ //create a new model with images and their IDs
-var bob  = pornDataArray[0];
+var bob  = urlObjects; //this is a dummy object we are using to test --> we would like eventually to retrive data from "Parse.js"
 
   app.inputs.create({ //create inputs by taking in images and their tags
   		bob
-  });
+   });
 
 
   app.models.create( //create model by associating IDs (tags == concepts) with the model
