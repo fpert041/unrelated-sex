@@ -111,6 +111,7 @@ function parseResp(resp) {
   if (resp.statusText  === 'OK') {
     var results = resp.outputs;
     tags = results;
+   		//if( tags === undefined ) train('cazzo');
     console.log(tags);  
   } else {
     console.log('Sorry, something is wrong.');
