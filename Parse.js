@@ -62,7 +62,8 @@ function processData(allText) {
 			}
 		}
 	}
-	console.log(pornDataArray);
+	//console.log(pornDataArray);
+	document.write(JSON.stringify(pornDataArray[3]));
 }
 
 function isEmpty(str) {
