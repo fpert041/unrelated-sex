@@ -1,13 +1,14 @@
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "porn-data.csv",
+        url: "porn-data-1.csv",
         dataType: "text",
         success: function(data) {processData(data);}
      });
 });
 
-var pornDataArray = [];
+
+var pornDataArray = [[],[],[],[]];
 
 function processData(allText) {
     var allTextLines = allText.split(/\r\n|\n/);
@@ -49,8 +50,19 @@ function processData(allText) {
 			}
 		}
 	}
-	console.log(concepts);
-	console.log(urls);
+	//urlDataArray = urls;
+	//conceptDataArray = concepts;
+	
+	for (i=0; i<numColumns/2; i++) {
+		for (u=0; u < urls[i].length; u++) {
+			pornDataArray[i].push({"url": urls[i][u], "concepts" : []});
+			for (c=0; c<concepts.length; c++) {
+				pornDataArray[i][u]["concepts"].push(
+				{"id" : concepts[i][c], "value" : "true"});
+			}
+		}
+	}
+	console.log(pornDataArray);
 }
 
 function isEmpty(str) {
