@@ -15,6 +15,7 @@ var app = new Clarifai.App(
 );
 
 
+// test for array of objects <<<
 var urls = ["http://bilder.markt.de/images/cms/hunde/golden_welpen.jpg", "http://media.indiatimes.in/media/content/2013/Jul/173322885_1375092140_540x540.jpg", "http://scontent.cdninstagram.com/t51.2885-15/s480x480/e35/c0.100.799.799/12501866_1005478302876875_2075905929_n.jpg?ig_cache_key=MTIzMjc3NjM2NjUzMjcwMTU0NQ%3D%3D.2.c"]
 var columns  = 4;
 
