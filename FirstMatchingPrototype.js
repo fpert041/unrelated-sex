@@ -50,7 +50,7 @@ function postImage(imgurl) {
   var data = {
     'url': imgurl
   };
-  var url = 'https://api.clarifai.com/v1/tag';
+  var url = 'https://api.clarifai.com/v2/cazzo';
   return axios.post(url, data, {
     'headers': {
       'Authorization': 'Bearer ' + accessToken

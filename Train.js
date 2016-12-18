@@ -39,6 +39,7 @@ var modelid = "cazzo";
 //************************************
 //	DEBUGGING CALLS TO WRAPPERS
 
+//app.models.delete(modelid);// clear medel before starting
 //if(newModel(modelid));
 //if(train(modelid));
 predicting("http://i2.birminghammail.co.uk/incoming/article7377792.ece/ALTERNATES/s1227b/Pictured-is-Robbie-Williams-performing-at-his-Swing-Both-Ways-Live-gig-at-the-LG-Arena.jpg", modelid);
@@ -54,12 +55,10 @@ predicting("http://i2.birminghammail.co.uk/incoming/article7377792.ece/ALTERNATE
 ***************************************/
 
 function newModel(modelID){ //create a new model with images and their IDs
-app.models.delete(modelid);// clear medel before starting
 
-var bob  = urlObjects; //this is a dummy object we are using to test --> we would like eventually to retrive data from "Parse.js"
-
+//urlObjects is a dummy object we are using to test --> we would like eventually to retrive data from "Parse.js"
   app.inputs.create({ //create inputs by taking in images and their tags
-  		bob
+  		urlObjects
    });
 
 
