@@ -125,7 +125,7 @@ app.models.predict(modelID, [imageURL]).then(
 function parseResp(resp) {
   var tags = [];
   if (resp.statusText  === 'OK') {
-    var results = resp.outputs;
+    var results = resp.data.outputs[0].data;
     tags = results;
    		//if( tags === undefined ) train('cazzo');
     console.log(tags);  
