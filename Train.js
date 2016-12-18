@@ -41,7 +41,7 @@ var modelid = "cazzo";
 
 //if(newModel(modelid));
 //if(train(modelid));
-predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
+predicting("http://i2.birminghammail.co.uk/incoming/article7377792.ece/ALTERNATES/s1227b/Pictured-is-Robbie-Williams-performing-at-his-Swing-Both-Ways-Live-gig-at-the-LG-Arena.jpg", modelid);
 
 //************************************
 	
