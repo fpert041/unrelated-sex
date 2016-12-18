@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "porn-data-1.csv",
+        url: "porn-data.csv",
         dataType: "text",
         success: function(data) {processData(data);}
      });
@@ -66,5 +66,5 @@ function processData(allText) {
 }
 
 function isEmpty(str) {
-    return (!str || 0 === str.length);
+    return (!str || 0 === str.length || str == '"');
 }
