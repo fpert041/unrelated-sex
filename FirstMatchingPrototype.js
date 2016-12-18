@@ -1,6 +1,8 @@
 // The JavaScript client works in both Node.js and the browser.
 
 
+  //-0------------------------------------------
+
 function getCredentials(cb) {
   var data = {
     'grant_type': 'client_credentials',
