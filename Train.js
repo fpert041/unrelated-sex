@@ -14,9 +14,6 @@ var app = new Clarifai.App(
  	'b9TdaV3FccAVvL3tpI2aqGqzEJv3eA3jnGDtsF2B'
 );
 
-var modelid = "cazzoj";
-
-
 
 var urls = ["http://bilder.markt.de/images/cms/hunde/golden_welpen.jpg", "http://media.indiatimes.in/media/content/2013/Jul/173322885_1375092140_540x540.jpg"]
 var columns  = 4;
@@ -35,15 +32,16 @@ for (var i = 0; i < urls.length; i++) {
 		});
 }
 
-console.log(urlObjects[0].concepts[0].id);
+console.log(urlObjects[0].concepts[0].id); //debug
 
 
+var modelid = "cazzo";
 //************************************
 //	DEBUGGING CALLS TO WRAPPERS
 
 //if(newModel(modelid));
-//if(train(modelid));
-predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
+if(train(modelid));
+//predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
 
 //************************************
 	
@@ -55,8 +53,9 @@ predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cut
 
 ***************************************/
 
-
 function newModel(modelID){ //create a new model with images and their IDs
+app.models.delete(modelid);// clear medel before starting
+
 var bob  = urlObjects; //this is a dummy object we are using to test --> we would like eventually to retrive data from "Parse.js"
 
   app.inputs.create({ //create inputs by taking in images and their tags
