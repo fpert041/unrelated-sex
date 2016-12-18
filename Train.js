@@ -14,17 +14,32 @@ var app = new Clarifai.App(
  	'b9TdaV3FccAVvL3tpI2aqGqzEJv3eA3jnGDtsF2B'
 );
 
-var modelid = "cazzokk";
+var modelid = "cazzoj";
 
 
-// if(newModel(modelid)){
-// 	if(train(modelid)){
-// 		//
-// 	}
-// }
+
+var urls = ["http://bilder.markt.de/images/cms/hunde/golden_welpen.jpg", "http://media.indiatimes.in/media/content/2013/Jul/173322885_1375092140_540x540.jpg"]
+var columns  = 4;
+
+var urlObjects = [];
+var tags = [];
 
 
-predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", modelid);
+for (var i = 0; i < urls.length; i++) {
+	urlObjects.push(
+		{url : urls[i], 
+			"concepts": [
+			    { "id": "cat", "value": false },
+			    { "id": "dog", "value": true }
+			]
+		});
+}
+
+console.log(urlObjects[0].concepts[0].id);
+
+//if(newModel(modelid));
+//if(train(modelid));
+//predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
 
 	
 /**************************************
@@ -35,16 +50,12 @@ predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cut
 
 ***************************************/
 
+
 function newModel(modelID){ //create a new model with images and their IDs
+var bob  = pornDataArray[0];
 
   app.inputs.create({ //create inputs by taking in images and their tags
-    url: "https://samples.clarifai.com/puppy.jpeg",
-    concepts: [
-      {
-        id: "boscoe",
-        value: true
-      }
-    ]
+  		bob
   });
 
 
@@ -121,5 +132,12 @@ function parseResp(resp) {
   return tags;
 }
 
-  
+
+
+
+
+
+
+//------------------------------------
+
 
