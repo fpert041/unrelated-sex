@@ -15,7 +15,7 @@ var app = new Clarifai.App(
 );
 
 
-var urls = ["http://bilder.markt.de/images/cms/hunde/golden_welpen.jpg", "http://media.indiatimes.in/media/content/2013/Jul/173322885_1375092140_540x540.jpg"]
+var urls = ["http://bilder.markt.de/images/cms/hunde/golden_welpen.jpg", "http://media.indiatimes.in/media/content/2013/Jul/173322885_1375092140_540x540.jpg", "http://scontent.cdninstagram.com/t51.2885-15/s480x480/e35/c0.100.799.799/12501866_1005478302876875_2075905929_n.jpg?ig_cache_key=MTIzMjc3NjM2NjUzMjcwMTU0NQ%3D%3D.2.c"]
 var columns  = 4;
 
 var urlObjects = [];
@@ -40,8 +40,8 @@ var modelid = "cazzo";
 //	DEBUGGING CALLS TO WRAPPERS
 
 //if(newModel(modelid));
-if(train(modelid));
-//predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
+//if(train(modelid));
+predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", Clarifai.GENERAL_MODEL);
 
 //************************************
 	
@@ -83,13 +83,11 @@ var bob  = urlObjects; //this is a dummy object we are using to test --> we woul
   return true;
 }
 
-
 function train(modelID){
   app.models.train(modelID.toString()).then( //train model by pairing images (inputs) with concepts of that model (tags)
     function(response) {
       console.log(response);
       console.log("TRAINED!");
-      predicting();
       return true;
     },
     function(err) {
