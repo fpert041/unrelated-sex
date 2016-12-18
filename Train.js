@@ -1,15 +1,43 @@
-var Clarifai = require('clarifai');
+//keys.js contains:
+/*
+ 'wqNCXgvoREAAZifnifES35QMcKvVCztV3r-wr_wf',
+  'b9TdaV3FccAVvL3tpI2aqGqzEJv3eA3jnGDtsF2B'
+
+  --but it's not being read by this js file
+*/
+
+var Clarifai = require('clarifai'); //
 
 // instantiate a new Clarifai app passing in your clientId and clientSecret
 var app = new Clarifai.App(
-  'wqNCXgvoREAAZifnifES35QMcKvVCztV3r-wr_wf',
-  'b9TdaV3FccAVvL3tpI2aqGqzEJv3eA3jnGDtsF2B'
+ 	'wqNCXgvoREAAZifnifES35QMcKvVCztV3r-wr_wf',
+ 	'b9TdaV3FccAVvL3tpI2aqGqzEJv3eA3jnGDtsF2B'
 );
 
+var modelid = "cazzokk";
 
-var modelID = "cazzok";
 
-app.inputs.create({
+// if(newModel(modelid)){
+// 	if(train(modelid)){
+// 		//
+// 	}
+// }
+
+
+predicting("http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg", modelid);
+
+	
+/**************************************
+	*** Interface wrapper functions ***
+
+	--- newModel(name_of_model)
+	--- predicting(image_url, name_of_model)
+
+***************************************/
+
+function newModel(modelID){ //create a new model with images and their IDs
+
+  app.inputs.create({ //create inputs by taking in images and their tags
     url: "https://samples.clarifai.com/puppy.jpeg",
     concepts: [
       {
@@ -17,13 +45,10 @@ app.inputs.create({
         value: true
       }
     ]
- });
-
-app.models.delete(
-    	modelID.toString());
+  });
 
 
-app.models.create(
+  app.models.create( //create model by associating IDs (tags == concepts) with the model
     modelID.toString(),
     [
       { "id": "boscoe" }
@@ -40,25 +65,37 @@ app.models.create(
     }
   );
 
-
-	app.models.train(modelID.toString()).then(
-	    function(response) {
-	      console.log(response);
-	      console.log("TRAINED!");
-	      predicting();
-	    },
-	    function(err) {
-	    	//console.error(err);
-	    	console.log("SLACKING");
-	    }
-	  );
+  return true;
+}
 
 
-//this gets called before the model finishes training
-
-app.models.predict(modelID.toString(), ["http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"]).then(
+function train(modelID){
+  app.models.train(modelID.toString()).then( //train model by pairing images (inputs) with concepts of that model (tags)
     function(response) {
       console.log(response);
+      console.log("TRAINED!");
+      predicting();
+      return true;
+    },
+    function(err) {
+    	console.error(err);
+    	console.log("SLACKING");
+    }
+  );
+}
+
+
+
+//--------------------------------------------------
+//if you call this before the model is trained, it won't work! 
+
+function predicting(imageURL, modelID){//associate image with concepts based on chosen model
+
+	//url E.G. - "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg"
+app.models.predict(modelID, [imageURL]).then(
+    function(response) {
+      console.log(response);
+      parseResp(response);
       console.log("ANSWERED");
     },
     function(err) {
@@ -66,7 +103,22 @@ app.models.predict(modelID.toString(), ["http://cdn1-www.dogtime.com/assets/uplo
     	console.log("CANNOTTALK");
     }
   );
+}
 
+//helper function for predict -> get html text-box element and fill it with tag values
+function parseResp(resp) {
+  var tags = [];
+  if (resp.statusText  === 'OK') {
+    var results = resp.outputs;
+    tags = results;
+    console.log(tags);  
+  } else {
+    console.log('Sorry, something is wrong.');
+  }
+
+  document.getElementById('output-textarea').value = tags.toString().replace(/,/g, ', ');
+  return tags;
+}
 
   
 

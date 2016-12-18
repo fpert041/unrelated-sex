@@ -15,7 +15,7 @@ function getCredentials(cb) {
     'transformRequest': [
       function() {
         return transformDataToParams(data);
-        console.log(data); //<<------------------------
+        console.log(data); //<<------------------------data here = credentials data
       }
     ]
   }).then(function(r) {
